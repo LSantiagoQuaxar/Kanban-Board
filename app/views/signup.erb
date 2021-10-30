@@ -1,0 +1,31 @@
+<head>
+    <link rel="stylesheet" href="stylesheets/login.css">
+</head>
+<main id="login">
+    
+    <form id="login-form" action="/signup" method="post">
+        <h1>¡Registrarse!</h1>
+        
+        <label for="username" >Nombre de Usuario</label>      
+        <% if session[:errors][:username] %>
+            <p><%= session[:errors][:username][0].to_s %></p>
+        <% end %>
+        <input type="text" name="username" id="username" placeholder="username:"required>
+
+        <label for="email" >Email</label>
+        <% if session[:errors][:email] %>
+            <p><%= session[:errors][:email][0].to_s %></p>
+        <% end %>
+        <input type="text" name="email" id="email" placeholder="Email:"required>
+
+        <label for="password">Contraseña</label>
+        <% if session[:errors][:password] %>
+            <p><%= session[:errors][:password][0].to_s %></p>
+        <% end %>
+        <% session[:errors] = Hash.new %>
+        <input type="password" name="password" id="password" placeholder="password:" required>
+
+        <button type="submit" value="submit">Ingresar</button>
+        <a href="/login">¿Ya tiene una cuenta?</a>
+    </form>
+</main>

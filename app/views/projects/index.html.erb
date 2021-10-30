@@ -1,0 +1,18 @@
+<head>
+    <link rel="stylesheet" href="/stylesheets/dash.css">
+</head>
+
+<article id="projects">
+    <h2>Your Projects:</h2>
+    <% @user.projects.each do |project| %>
+    <a href="/projects/<%= project.id %>">
+        <section class="project-card">
+            <h4><%= project.title %></h4>
+            <% tsks = project.tasks %>
+            <p>Queued Tasks: <%= tsks.filter {|t| t.doneness == "0" }.count %></p>
+            <p>In-Progress Tasks: <%= tsks.filter {|t| t.doneness == "1" }.count %></p>
+            <p>Completed Tasks: <%= tsks.filter {|t| t.doneness == "2" }.count %></p>
+        </section>
+    </a>
+    <% end %>
+</article>

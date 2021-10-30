@@ -1,0 +1,107 @@
+
+button:hover {
+    background-color: #000;
+    color: #fff;
+}
+ #project__delete {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+#edit {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+#add_task {
+    padding: 2em 1em;
+    width: 30vw;
+    margin: 0 auto;
+}
+#add_task h4 {
+    padding-bottom: 1em;
+}
+#add_task form {
+    flex-direction: row;
+}
+#add_task form input {
+    width:75%;
+    height:2em;
+    border: solid black 1px;
+    padding-left: .5em;
+}
+#add_task form button {
+    width:25%;
+    height:2em;
+    background-color: #fff;
+    border: solid black 1px;
+}
+#add_task form button:hover {
+    width:25%;
+    height:2em;
+    background-color: #000;
+    color: #fff;
+}
+
+#kanban {
+    margin: 0 auto;
+    min-height: 80vh;
+    width: 95%;
+    max-width: 1000px;
+    padding-left: 1em;
+    padding-right: 1em;
+    display:grid;
+    grid-template-columns: repeat(3, 33.33%);
+}
+
+.kanban__column {
+    min-height: 10vh;
+    padding: 1em .5em;
+}
+.kanban__column-header {
+    background-color: #000;
+    color: #fff;
+    padding: .5em 0;
+    text-align: center;
+}
+.kanban__column-content {
+}
+
+.task__card {
+    margin-top: 1em;
+    border: solid black 1px;
+    display: flex;
+    flex-direction: column;    
+    justify-content: space-between;
+}
+
+.task__card p {
+    word-wrap: break-word;
+    padding: .5em .3em 1em .3em;
+}
+.task__card--controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+} 
+.task__card--controls form, .task__card--controls a {
+    text-align: center;
+    width: 33%;
+    margin: 0;
+    text-decoration: none;
+    color: black;
+}
+.task__card--controls button:hover, .task__card--controls a:hover {
+    text-decoration: none;
+    color: white;
+    background-color: black;
+    border: solid black 1px;
+}
+.task__card--controls button {
+    border: none;
+    background-color: #fff;
+    color: black;
+    /* border: solid black 1px; */
+    width: 100%;
+}

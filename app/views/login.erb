@@ -1,0 +1,23 @@
+<head>
+    <link rel="stylesheet" href="stylesheets/login.css">
+</head>
+<main id="login">
+    <form id="login-form" action="/login" method="post">
+        <h1>Hello!</h1>
+        <% if session[:errors] %>
+                <% session[:errors].each do |error| %>
+                    <p><%= error %></p>
+                <% end %>
+        <% end %>
+        <% session[:errors] = Hash.new %>
+        
+        <label for="username" >Nombre de Usuario</label>      
+        <input type="text" name="username" id="username" placeholder="username:"required>
+
+        <label for="password">Contraseña</label>
+        <input type="password" name="password" id="password" placeholder="password:" required>
+        
+        <button type="submit">Iniciar Sesión</button>
+        <a href="/signup">¿Registrarse?</a>
+    </form>
+</main>

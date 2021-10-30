@@ -1,0 +1,33 @@
+<link rel="stylesheet" href="/stylesheets/header.css">
+
+<header>
+    <nav>
+        <a href="/projects"><%= current_user.username %></a>
+        <a id="header__logout" href="/logout">Log Out</a>
+        <a href="/projects">Mis Proyectos</a>
+        <a href="/projects/new">Nuevos Proyectos</a>
+
+        <% if @project %>
+            <a href="/projects/<%= @project.id %>/edit">Editar proyecto</a>
+            <form action="/projects/<%= @project.id %>/delete" method="post">
+                <input type="hidden" name="_method" value="delete">
+                <button type="submit" value="¿Borrar proyecto?">¿Borrar proyecto?</button>
+            </form>
+        <% end %>
+
+        <form action="/users/<%= current_user.id %>/delete" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <button type="submit">Borrar Cuenta</button>
+            
+        </form>
+    </nav>
+
+    <% if @project %>
+        <h1><%= @project.title %></h1>
+        <p><%= @project.description %></p>
+    
+        <% else %>
+        <h1><%= current_user.username %></h1>
+    
+    <% end %>   
+</header>

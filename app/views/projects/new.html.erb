@@ -1,0 +1,30 @@
+<head>
+    <link rel="stylesheet" href="/stylesheets/login.css">
+</head>
+<main id="login">
+    
+    <form id="login-form" action="/projects" method="post">
+        <h1>new project!</h1>
+        
+        <label for="title">Project Name:</label>
+        <% if session.has_key? :errors %>
+            <% if session[:errors].has_key? :title %>
+                <p><%= session[:errors][:title].first %></p>
+            <% end %>
+        <% end %>
+        
+        <input type="text" name="title" id="title" value="">
+        
+        <label for="description">Project description:</label>
+        <% if session.has_key? :errors %>
+            <% if session[:errors][:description] %>
+                <p><%= session[:errors][:description].first %></p>
+            <% end %>
+        <% end %>
+        <input type="text" name="description" id="description" value="">
+        
+        <% session[:errors] = Hash.new() %>
+
+        <button type="submit" value="submit">Create Project</button>
+    </form>
+</main>

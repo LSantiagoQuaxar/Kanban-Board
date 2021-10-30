@@ -1,0 +1,115 @@
+<head>
+    <link rel="stylesheet" href="/stylesheets/board.css">
+</head>
+
+<section id="add_task">
+    <h4>Add Item</h4>
+        <% if session[:errors][:content] %>
+            <p><%= session[:errors][:content].first %></p>
+        <% end %>
+        <% session[:errors] = Hash.new() %>
+    <form action="/tasks" method="post">
+        <input type="hidden" name="project_id" value="<%= @project.id %>">
+        <input type="text" cols="50" name="content" id="content">
+        <button type="submit" class="btn btn-primary">Add Task</button>
+    </form>       
+</section>
+
+
+<% states = ["To-Do", "In-Progress", "Completed"]%>
+
+<main id="kanban">
+    <section class="kanban__column">
+        <div class="kanban__column-header">
+            <h4>ToDo</h4>
+        </div>
+
+        <div class="kanban__column-content">
+            <% @project.tasks.each do |task| %>
+                <% if task.doneness.to_i == 0 %>
+                    <section class="task__card">
+                        <p><%= task.content %></p>
+                        <div class="task__card--controls">
+                            <form action="/tasks/<%= task.id %>/delete" method="post">
+                                <input type="hidden" name="_method" value="delete">
+                                <button type="submit" value="Delete">X</span></button>
+                            </form>
+                            <form action="/tasks/<%= task.id %>/move-up" method="post">
+                                <input type="hidden" name="_method" value="patch">
+                                <button type="submit" value="move-up">--></span></button>
+                            </form>
+                            <a href="/tasks/<%= task.id%>/edit">Edit</a>
+                        </div>
+                    </section>
+                <br>
+                <% end %>
+            <% end %>
+        </div>
+        
+    </section>
+
+    <section class="kanban__column">
+        <div class="kanban__column-header">
+            <h4>In-Progress</h4>
+        </div>
+        
+        <div class="kanban__column-content">
+            <% @project.tasks.each do |task| %>
+                <% if task.doneness.to_i == 1 %>
+                    <section class="task__card">
+                        <p><%= task.content %></p>
+                        <div class="task__card--controls">
+                            <form action="/tasks/<%= task.id %>/delete" method="post">
+                                <input type="hidden" name="_method" value="delete">
+                                <button type="submit" value="Delete">X</span></button>
+                            </form>
+                            <form action="/tasks/<%= task.id %>/move-up" method="post">
+                                <input type="hidden" name="_method" value="patch">
+                                <button type="submit" value="move-up">--></span></button>
+                            </form>
+                            <a href="/tasks/<%= task.id%>/edit">Edit</a>
+                        </div>
+                    </section>                    
+                <br>
+                <% end %>
+            <% end %>
+        </div>
+    </section>
+
+    <section class="kanban__column">
+        <div class="kanban__column-header">
+            <h4>Complete</h4>
+        </div>
+        
+        <div class="kanban__column-content">
+            <% @project.tasks.each do |task| %>
+                <% if task.doneness.to_i == 2 %>
+                    <section class="task__card">
+                        <p><%= task.content %></p>
+                        <div class="task__card--controls">
+                            <form action="/tasks/<%= task.id %>/delete" method="post">
+                                <input type="hidden" name="_method" value="delete">
+                                <button type="submit" value="Delete">X</span></button>
+                            </form>
+                            <form action="/tasks/<%= task.id %>/move-up" method="post">
+                                <input type="hidden" name="_method" value="patch">
+                                <button type="submit" value="move-up">--></span></button>
+                            </form>
+                            <a href="/tasks/<%= task.id%>/edit">Edit</a>
+                        </div>
+                    </section>
+                <br>
+                <% end %>
+            <% end %>
+        </div>
+    </section>
+</main>
+        
+        
+        
+<!--
+<div class="row">
+    
+</div>
+
+-->
